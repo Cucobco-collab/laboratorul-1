@@ -94,17 +94,14 @@ The Personal Investment Dashboard helps the individual investor solve the proble
     *   *Alternative result:* If the refresh fails due to an unauthorized access error with the data provider, the dashboard shows an "Update Failed: Access Denied" warning prompt.
 
 
-## 5. C4 System Context
-
-```mermaid
 C4Context
     title System Context Diagram for Personal Investment Dashboard
 
-    Person(investor, "Individual Investor", "A retail investor who tracks personal investments and market trends.")
+    Person(investor, "Individual Investor", "A retail investor who tracks<br>personal investments.")
     
-    System(dashboard, "Personal Investment Dashboard", "Consolidates asset holdings, calculates portfolio performance, and displays market watchlists.")
+    System(dashboard, "Personal Investment Dashboard", "Consolidates asset holdings,<br>calculates portfolio performance,<br>and displays market watchlists.")
     
-    System_Ext(marketData, "Market Data Provider", "External financial data feed supplying asset prices and ticker information.")
+    System_Ext(marketData, "Market Data Provider", "External financial data feed<br>supplying asset prices.")
 
-    Rel(investor, dashboard, "Views portfolio valuation, enters holdings, and manages watchlists")
-    Rel(dashboard, marketData, "Fetches market prices and ticker updates")
+    Rel_D(investor, dashboard, "Views portfolio valuation, enters holdings, and manages watchlists")
+    Rel_D(dashboard, marketData, "Fetches market prices and ticker updates")
