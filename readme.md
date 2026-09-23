@@ -6,6 +6,22 @@
 
 **Answer:** Existing products help users follow market information by aggregating real-time prices, calculating daily percentage changes, and categorizing assets visually. For this Dashboard's first version, the core reusable parts are the unified watchlist, the daily performance summary, and the asset categorization. Complex technical chart indicators and active trading execution features will be excluded from the initial version.
 
+### Product Evidence
+
+#### Google Finance
+* **Public Source:** [Google Finance](https://www.google.com/finance/)
+* **Observed Pattern:** Unified Watchlist & Daily Change Summary.
+* **Evidence:**
+![Google Finance Evidence](google-finance.jpg)
+
+#### TradingView
+* **Public Source:** [TradingView](https://www.tradingview.com/)
+* **Observed Pattern:** Multi-Asset Holdings Overview & Category Breakdown.
+* **Evidence:**
+![TradingView Evidence](tradingview.jpg)
+
+### Comparison Table
+
 | Product | Likely User and goal | Reusable pattern |
 | :--- | :--- | :--- |
 | **Google Finance** | **Retail Investor** who wants a fast, low-effort overview of daily market movements and watchlist news without logging into a bank. | **Unified Watchlist & Daily Change Summary** (Aggregating stock tickers into custom lists showing real-time price change and percentage). |
@@ -112,5 +128,3 @@ flowchart TD
     
     %% Relatie de returnare erori
     MarketData -."Missing: Last known value + warning<br/>Stale: Yellow indicator + timestamp<br/>Unsupported: Inline notification".-> Dashboard
-```
-
