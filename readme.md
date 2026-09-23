@@ -11,7 +11,6 @@
 | **Google Finance** | **Retail Investor** who wants a fast, low-effort overview of daily market movements and watchlist news without logging into a bank. | **Unified Watchlist & Daily Change Summary** (Aggregating stock tickers into custom lists showing real-time price change and percentage). |
 | **TradingView** | **Active Trader / Analyst** who wants technical chart analysis, key financial metrics, and multi-asset price tracking. | **Multi-Asset Holdings Overview** (Visualizing asset allocation and tracking total portfolio percentage gain/loss over time). |
 
-
 ## 2. Stakeholders and actors
 
 **Stakeholder Analysis Table:**
@@ -36,7 +35,6 @@
 *   **External system:** Market Data Provider
 *   **Other stakeholder:** Financial Regulator, Product Manager, Support Team
 
-
 ## 3. Product promise and scope
 
 **Product promise:**
@@ -53,7 +51,6 @@ The Personal Investment Dashboard helps the individual investor solve the proble
 1. The Dashboard will not execute buy, sell, or transfer transactions for any financial assets.
 2. The Dashboard will not automatically connect to external bank accounts or brokerages to pull live transaction history.
 3. The Dashboard will not provide automated investment recommendations or personalized financial advice.
-
 
 ## 4. Functional requirements
 
@@ -93,15 +90,27 @@ The Personal Investment Dashboard helps the individual investor solve the proble
     *   A timestamp is always visible indicating when the prices were last synced.
     *   *Alternative result:* If the refresh fails due to an unauthorized access error with the data provider, the dashboard shows an "Update Failed: Access Denied" warning prompt.
 
+## 5. C4 System Context
 
-C4Context
-    title System Context Diagram for Personal Investment Dashboard
+```mermaid
+flowchart TD
+    %% Stiluri C4
+    classDef person fill:#08427b,color:#fff,stroke:#052e56,stroke-width:2px,rx:50,ry:50
+    classDef system fill:#1168bd,color:#fff,stroke:#0b4884,stroke-width:2px,rx:10,ry:10
+    classDef external fill:#999999,color:#fff,stroke:#666666,stroke-width:2px,rx:10,ry:10
 
-    Person(investor, "Individual Investor", "A retail investor who tracks<br>personal investments.")
+    %% Noduri (Actori si Sisteme)
+    User("👤 Individual Investor<br/>[Person]<br/><br/>A retail investor who tracks<br/>personal investments."):::person
     
-    System(dashboard, "Personal Investment Dashboard", "Consolidates asset holdings,<br>calculates portfolio performance,<br>and displays market watchlists.")
+    Dashboard["Personal Investment Dashboard<br/>[Software System]<br/><br/>Consolidates asset holdings,<br/>calculates portfolio performance,<br/>and displays market watchlists."]:::system
     
-    System_Ext(marketData, "Market Data Provider", "External financial data feed<br>supplying asset prices.")
+    MarketData["Market Data Provider<br/>[Software System]<br/><br/>External financial data feed<br/>supplying asset prices."]:::external
 
-    Rel_D(investor, dashboard, "Views portfolio valuation, enters holdings, and manages watchlists")
-    Rel_D(dashboard, marketData, "Fetches market prices and ticker updates")
+    %% Relatii
+    User -- "Views portfolio valuation,<br/>enters holdings, and<br/>manages watchlists" --> Dashboard
+    Dashboard -- "Fetches market prices<br/>and ticker updates" --> MarketData
+    
+    %% Relatie de returnare erori
+    MarketData -."Missing: Last known value + warning<br/>Stale: Yellow indicator + timestamp<br/>Unsupported: Inline notification".-> Dashboard
+```
+
